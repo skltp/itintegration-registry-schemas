@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DON'T CHANGE THE CONTENT OF THIS COMMENT UNLESS YOU REALLY KNOW WHAT 
+	YOU ARE DOING! [soi-toolkit.gen.version=0.3.1] [soi-toolkit.gen.type=schemas] 
+	[soi-toolkit.gen.createDate=2011-07-29T14:29:37.643+02:00] [soi-toolkit.gen.artifactId=getsupportedservicecontracts] -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.soitoolkit.commons.poms</groupId>
+		<artifactId>soitoolkit-default-parent</artifactId>
+		<version>0.3.1</version>
+	</parent>
+
+	<groupId>se.skl.tp</groupId>
+	<artifactId>itintegration-registry-schemas</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>itintegration registry schemas</name>
+
+	<scm>
+		<connection>scm:svn:http://skltp.googlecode.com/svn/skltp/tp/itintegration-registry-schemas/trunk</connection>
+		<developerConnection>scm:svn:https://skltp.googlecode.com/svn/skltp/tp/itintegration-registry-schemas/trunk</developerConnection>
+		<url>http://skltp.googlecode.com/svn/skltp/tp/itintegration-registry-schemas/trunk</url>
+	</scm>
+
+	<properties>
+		<!-- Properties for generating code from WSDL and XML Schemas (JAX-WS + 
+			JAXB) -->
+		<schema.path>${basedir}/src/main/resources/schemas</schema.path>
+		<schema.gen.src.dir>${project.build.directory}/generated-sources/cxf</schema.gen.src.dir>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.soitoolkit.commons.poms</groupId>
+			<artifactId>soitoolkit-schemas-jax-ws-dependencies</artifactId>
+			<version>${soitoolkit.version}</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-codegen-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>generate-sources</id>
+						<phase>generate-sources</phase>
+						<configuration>
+							<sourceRoot>${basedir}/target/generated/src/main/java</sourceRoot>
+							<wsdlOptions>
+								<wsdloption>
+									<wsdl>${schema.path}/./interactions/GetLogicalAddresseesByServiceContractInteraction/GetLogicalAddresseesByServiceContractInteraction_1.0_RIVTABP21.wsdl</wsdl>
+									<extraargs>
+										<extraarg>-p</extraarg>
+										<extraarg>http://www.w3.org/2005/08/addressing=org.w3c.addressing.v1</extraarg>
+										<extraarg>-p</extraarg>
+										<extraarg>urn:riv:insuranceprocess:healthreporting:GetLogicalAddresseesByServiceContractResponder:1=se.riv.insuranceprocess.healthreporting.getlogicaladdresseesbyservicecontractresponder.v1</extraarg>
+										<extraarg>-p</extraarg>
+										<extraarg>urn:riv:insuranceprocess:healthreporting:GetLogicalAddresseesByServiceContractInitiator:1=se.riv.insuranceprocess.healthreporting.getlogicaladdresseesbyservicecontractinitiator.v1</extraarg>
+										<extraarg>-p</extraarg>
+										<extraarg>urn:riv:insuranceprocess:healthreporting:GetLogicalAddresseesByServiceContract:1:rivtabp21=se.riv.insuranceprocess.healthreporting.getlogicaladdresseesbyservicecontract.v1.rivtabp21</extraarg>
+										<extraarg>-p</extraarg>
+										<extraarg>urn:riv:itintegration:registry:1=se.riv.itintegration.registry.v1</extraarg>
+									</extraargs>
+								</wsdloption>
+								<wsdloption>
+									<wsdl>${schema.path}/./interactions/GetSupportedServiceContractsInteraction/GetSupportedServiceContractsInteraction_1.0_RIVTABP21.wsdl</wsdl>
+									<extraargs>
+										<extraarg>-p</extraarg>
+										<extraarg>http://www.w3.org/2005/08/addressing=org.w3c.addressing.v1</extraarg>
+										<extraarg>-p</extraarg>
+										<extraarg>urn:riv:itintegration:registry:1=se.riv.itintegration.registry.v1</extraarg>
+										<extraarg>-p</extraarg>
+										<extraarg>urn:riv:itintegration:registry:GetSupportedServiceContractsResponder:1=se.riv.itintegration.registry.getsupportedservicecontractsresponder.v1</extraarg>
+										<extraarg>-p</extraarg>
+										<extraarg>urn:riv:itintegration:registry:GetSupportedServiceContractsInitiator:1=se.riv.itintegration.registry.getsupportedservicecontractsinitiator.v1</extraarg>
+										<extraarg>-p</extraarg>
+										<extraarg>urn:riv:itintegration:registry:GetSupportedServiceContracts:1:rivtabp21=se.riv.itintegration.registry.getsupportedservicecontracts.v1.rivtabp21</extraarg>
+									</extraargs>
+								</wsdloption>
+							</wsdlOptions>
+						</configuration>
+						<goals>
+							<goal>wsdl2java</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<!-- Create a zip-file only containing wsdl & xsd files, i.e. no JAX-WS/JAXB-generated 
+					artifacts, for example for a Microsoft .Net C# app -->
+				<artifactId>maven-assembly-plugin</artifactId>
+				<dependencies>
+					<dependency>
+						<!-- Plugin-dependency to a shared assembly-descriptor that creates 
+							the zip-file -->
+						<groupId>org.soitoolkit.commons.poms</groupId>
+						<artifactId>soitoolkit-assembly-descriptors</artifactId>
+						<version>${soitoolkit.version}</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptors>
+								<descriptor>schema-assembly-descriptor.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>
