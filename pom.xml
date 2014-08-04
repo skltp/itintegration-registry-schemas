@@ -28,7 +28,7 @@
 	<properties>
 		<!-- Properties for generating code from WSDL and XML Schemas (JAX-WS + 
 			JAXB) -->
-		<schema.path>${basedir}/src/main/resources/schemas</schema.path>
+		<schema.path>${basedir}/src/main/resources/ServiceContracts_infrastructure_itintegration_registry</schema.path>
 		<schema.gen.src.dir>${project.build.directory}/generated-sources/cxf</schema.gen.src.dir>
 	</properties>
 
