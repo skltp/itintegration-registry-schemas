@@ -9,19 +9,20 @@
 	<parent>
 		<groupId>org.soitoolkit.commons.poms</groupId>
 		<artifactId>soitoolkit-default-parent</artifactId>
-		<version>0.3.1</version>
+		<version>0.6.1</version>
 	</parent>
 
-	<groupId>se.skl.tp</groupId>
-	<artifactId>itintegration-registry-schemas</artifactId>
-	<version>1.1-SNAPSHOT</version>
+	<groupId>se.skltp.infrastructure.itintegration</groupId>
+	<artifactId>infrastructure_itintegration_registry_schemas</artifactId>
+	<version>2.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>itintegration registry schemas</name>
+	<name>${artifactId}</name>
+  	<url>http://skltp.se</url>
 
 	<scm>
-		<connection>scm:svn:http://skltp.googlecode.com/svn/skltp/tp/itintegration-registry-schemas/tags/itintegration-registry-schemas-1.0.0</connection>
-		<developerConnection>scm:svn:https://skltp.googlecode.com/svn/skltp/tp/itintegration-registry-schemas/tags/itintegration-registry-schemas-1.0.0</developerConnection>
-		<url>http://skltp.googlecode.com/svn/skltp/tp/itintegration-registry-schemas/tags/itintegration-registry-schemas-1.0.0</url>
+		<connection>scm:svn:https://skltp.googlecode.com/svn/tp/itintegration-registry-schemas/trunk</connection>
+		<developerConnection>scm:svn:scm:svn:https://skltp.googlecode.com/svn/tp/itintegration-registry-schemas/trunk</developerConnection>
+		<url>http://skltp.googlecode.com/svn/tp/itintegration-registry-schemas/trunk</url>
 	</scm>
 
 	<properties>
@@ -30,15 +31,6 @@
 		<schema.path>${basedir}/src/main/resources/schemas</schema.path>
 		<schema.gen.src.dir>${project.build.directory}/generated-sources/cxf</schema.gen.src.dir>
 	</properties>
-
-	<dependencies>
-		<dependency>
-			<groupId>org.soitoolkit.commons.poms</groupId>
-			<artifactId>soitoolkit-schemas-jax-ws-dependencies</artifactId>
-			<version>${soitoolkit.version}</version>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
 
 	<build>
 		<plugins>
@@ -52,36 +44,68 @@
 						<configuration>
 							<sourceRoot>${basedir}/target/generated/src/main/java</sourceRoot>
 							<wsdlOptions>
-								<wsdloption>
-									<wsdl>${schema.path}/./interactions/GetLogicalAddresseesByServiceContractInteraction/GetLogicalAddresseesByServiceContractInteraction_1.0_RIVTABP21.wsdl</wsdl>
-									<extraargs>
-										<extraarg>-p</extraarg>
-										<extraarg>http://www.w3.org/2005/08/addressing=org.w3c.addressing.v1</extraarg>
-										<extraarg>-p</extraarg>
-										<extraarg>urn:riv:itintegration:registry:GetLogicalAddresseesByServiceContractResponder:1=se.riv.itintegration.registry.getlogicaladdresseesbyservicecontractresponder.v1</extraarg>
-										<extraarg>-p</extraarg>
-										<extraarg>urn:riv:itintegration:registry:GetLogicalAddresseesByServiceContractInitiator:1=se.riv.itintegration.registry.getlogicaladdresseesbyservicecontractinitiator.v1</extraarg>
-										<extraarg>-p</extraarg>
-										<extraarg>urn:riv:itintegration:registry:GetLogicalAddresseesByServiceContract:1:rivtabp21=se.riv.itintegration.registry.getlogicaladdresseesbyservicecontract.v1.rivtabp21</extraarg>
-										<extraarg>-p</extraarg>
-										<extraarg>urn:riv:itintegration:registry:1=se.riv.itintegration.registry.v1</extraarg>
-									</extraargs>
-								</wsdloption>
-								<wsdloption>
-									<wsdl>${schema.path}/./interactions/GetSupportedServiceContractsInteraction/GetSupportedServiceContractsInteraction_1.0_RIVTABP21.wsdl</wsdl>
-									<extraargs>
-										<extraarg>-p</extraarg>
-										<extraarg>http://www.w3.org/2005/08/addressing=org.w3c.addressing.v1</extraarg>
-										<extraarg>-p</extraarg>
-										<extraarg>urn:riv:itintegration:registry:1=se.riv.itintegration.registry.v1</extraarg>
-										<extraarg>-p</extraarg>
-										<extraarg>urn:riv:itintegration:registry:GetSupportedServiceContractsResponder:1=se.riv.itintegration.registry.getsupportedservicecontractsresponder.v1</extraarg>
-										<extraarg>-p</extraarg>
-										<extraarg>urn:riv:itintegration:registry:GetSupportedServiceContractsInitiator:1=se.riv.itintegration.registry.getsupportedservicecontractsinitiator.v1</extraarg>
-										<extraarg>-p</extraarg>
-										<extraarg>urn:riv:itintegration:registry:GetSupportedServiceContracts:1:rivtabp21=se.riv.itintegration.registry.getsupportedservicecontracts.v1.rivtabp21</extraarg>
-									</extraargs>
-								</wsdloption>
+								<!-- Deprecated v1 service contracts to be removed as soon as all consumers and producers has moved to v2 -->
+				                <wsdloption>
+				                  <wsdl>${schema.path}/interactions/GetLogicalAddresseesByServiceContractInteraction/GetLogicalAddresseesByServiceContractInteraction_1.0_RIVTABP21.wsdl</wsdl>
+				                  <extraargs>
+				                    <extraarg>-validate</extraarg>
+				                    <extraarg>-p</extraarg>
+				                    <extraarg>http://www.w3.org/2005/08/addressing=org.w3c.addressing.v1</extraarg>
+				                    <extraarg>-p</extraarg>
+				                    <extraarg>urn:riv:itintegration:registry:1=se.rivta.itintegration.registry.v1</extraarg>
+				                    <extraarg>-p</extraarg>
+				                    <extraarg>urn:riv:itintegration:registry:GetLogicalAddresseesByServiceContractResponder:1=se.rivta.itintegration.registry.getlogicaladdresseesbyservicecontractresponder.v1</extraarg>
+				                    <extraarg>-p</extraarg>
+				                    <extraarg>urn:riv:itintegration:registry:GetLogicalAddresseesByServiceContract:1:rivtabp21=se.rivta.itintegration.registry.getlogicaladdresseesbyservicecontract.v1.rivtabp21</extraarg>
+				                  </extraargs>
+				                </wsdloption>
+
+				                <wsdloption>
+				                  <wsdl>${schema.path}/interactions/GetSupportedServiceContractsInteraction/GetSupportedServiceContractsInteraction_1.0_RIVTABP21.wsdl</wsdl>
+				                  <extraargs>
+				                    <extraarg>-validate</extraarg>
+				                    <extraarg>-p</extraarg>
+				                    <extraarg>http://www.w3.org/2005/08/addressing=org.w3c.addressing.v1</extraarg>
+				                    <extraarg>-p</extraarg>
+				                    <extraarg>urn:riv:itintegration:registry:1=se.rivta.itintegration.registry.v1</extraarg>
+				                    <extraarg>-p</extraarg>
+				                    <extraarg>urn:riv:itintegration:registry:GetSupportedServiceContractsResponder:1=se.rivta.itintegration.registry.getsupportedservicecontractsresponder.v1</extraarg>
+				                    <extraarg>-p</extraarg>
+				                    <extraarg>urn:riv:itintegration:registry:GetSupportedServiceContracts:1:rivtabp21=se.rivta.itintegration.registry.getsupportedservicecontracts.v1.rivtabp21</extraarg>
+				                  </extraargs>
+				                </wsdloption>
+
+				                <!-- END OF deprecated v1 service contracts -->
+
+				                <wsdloption>
+				                  <wsdl>${schema.path}/interactions/GetLogicalAddresseesByServiceContractInteraction/GetLogicalAddresseesByServiceContractInteraction_2.0_RIVTABP21.wsdl</wsdl>
+				                  <extraargs>
+				                    <extraarg>-validate</extraarg>
+				                    <extraarg>-p</extraarg>
+				                    <extraarg>http://www.w3.org/2005/08/addressing=org.w3c.addressing.v1</extraarg>
+				                    <extraarg>-p</extraarg>
+				                    <extraarg>urn:riv:infrastructure:itintegration:registry:2=se.rivta.infrastructure.itintegration.registry.v2</extraarg>
+				                    <extraarg>-p</extraarg>
+				                    <extraarg>urn:riv:infrastructure:itintegration:registry:GetLogicalAddresseesByServiceContractResponder:2=se.rivta.infrastructure.itintegration.registry.getlogicaladdresseesbyservicecontractresponder.v2</extraarg>
+				                    <extraarg>-p</extraarg>
+				                    <extraarg>urn:riv:infrastructure:itintegration:registry:GetLogicalAddresseesByServiceContract:2:rivtabp21=se.rivta.infrastructure.itintegration.registry.getlogicaladdresseesbyservicecontract.v2.rivtabp21</extraarg>
+				                  </extraargs>
+				                </wsdloption>
+
+				                <wsdloption>
+				                  <wsdl>${schema.path}/interactions/GetSupportedServiceContractsInteraction/GetSupportedServiceContractsInteraction_2.0_RIVTABP21.wsdl</wsdl>
+				                  <extraargs>
+				                    ¨<extraarg>-validate</extraarg>
+				                    <extraarg>-p</extraarg>
+				                    <extraarg>http://www.w3.org/2005/08/addressing=org.w3c.addressing.v1</extraarg>
+				                    <extraarg>-p</extraarg>
+				                    <extraarg>urn:riv:infrastructure:itintegration:registry:2=se.rivta.infrastructure.itintegration.registry.v2</extraarg>
+				                    <extraarg>-p</extraarg>
+				                    <extraarg>urn:riv:infrastructure:itintegration:registry:GetSupportedServiceContractsResponder:2=se.rivta.infrastructure.itintegration.registry.getsupportedservicecontractsresponder.v2</extraarg>
+				                    <extraarg>-p</extraarg>
+				                    <extraarg>urn:riv:infrastructure:itintegration:registry:GetSupportedServiceContracts:2:rivtabp21=se.rivta.infrastructure.itintegration.registry.getsupportedservicecontracts.v2.rivtabp21</extraarg>
+				                  </extraargs>
+				                </wsdloption>
 							</wsdlOptions>
 						</configuration>
 						<goals>
@@ -90,35 +114,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<!-- Create a zip-file only containing wsdl & xsd files, i.e. no JAX-WS/JAXB-generated 
-					artifacts, for example for a Microsoft .Net C# app -->
-				<artifactId>maven-assembly-plugin</artifactId>
-				<dependencies>
-					<dependency>
-						<!-- Plugin-dependency to a shared assembly-descriptor that creates 
-							the zip-file -->
-						<groupId>org.soitoolkit.commons.poms</groupId>
-						<artifactId>soitoolkit-assembly-descriptors</artifactId>
-						<version>${soitoolkit.version}</version>
-					</dependency>
-				</dependencies>
-				<executions>
-					<execution>
-						<id>make-assembly</id>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-						<configuration>
-							<descriptors>
-								<descriptor>schema-assembly-descriptor.xml</descriptor>
-							</descriptors>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-
 		</plugins>
 	</build>
 
