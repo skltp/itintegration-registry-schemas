@@ -21,7 +21,7 @@
 
 	<scm>
 		<connection>scm:svn:https://skltp.googlecode.com/svn/tp/itintegration-registry-schemas/trunk</connection>
-		<developerConnection>scm:svn:scm:svn:https://skltp.googlecode.com/svn/tp/itintegration-registry-schemas/trunk</developerConnection>
+		<developerConnection>scm:svn:https://skltp.googlecode.com/svn/tp/itintegration-registry-schemas/trunk</developerConnection>
 		<url>http://skltp.googlecode.com/svn/tp/itintegration-registry-schemas/trunk</url>
 	</scm>
 
