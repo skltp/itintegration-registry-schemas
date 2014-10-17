@@ -1,0 +1,1 @@
+# itintegration-registry-schemas
