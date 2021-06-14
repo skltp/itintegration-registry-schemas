@@ -19,9 +19,9 @@
 	@REM specific language governing permissions and limitations
 	@REM under the License.
 	@REM ---------------------------------------------------------------------------------
-	CD ..
+	CD ../..
 	
-	SET SCHEMADIR=..\schemas
+	SET SCHEMADIR=schemas
 	
 	SET W0=%SCHEMADIR%\interactions\GetLogicalAddresseesByServiceContractInteraction\GetLogicalAddresseesByServiceContractInteraction_2.0_RIVTABP21.wsdl
 SET X0=%SCHEMADIR%\interactions\GetLogicalAddresseesByServiceContractInteraction\*.xsd
